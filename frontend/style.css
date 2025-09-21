@@ -1,137 +1,368 @@
-        /* Estilos generales */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            color: #333;
-        }
+/* Reset básico */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .container {
-            display: flex;
-            width: 80%;
-            max-width: 1000px;
-            height: 85vh;
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
+/* Fondo con gradiente animado en tonos morados y azules */
+body {
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    background: linear-gradient(120deg, #a18cd1 0%, #fbc2eb 40%, #6dd5fa 80%, #2193b0 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #222;
+    animation: gradientBG 10s ease-in-out infinite alternate;
+    /* Sutil patrón de puntos para dar profundidad */
+    background-image:
+        linear-gradient(120deg, #a18cd1 0%, #fbc2eb 40%, #6dd5fa 80%, #2193b0 100%),
+        repeating-radial-gradient(circle at 20% 20%, #e0eafc 0px, #e0eafc 1.5px, transparent 1.5px, transparent 40px),
+        repeating-radial-gradient(circle at 80% 80%, #c7d2fe 0px, #c7d2fe 1.5px, transparent 1.5px, transparent 50px);
+    background-blend-mode: lighten;
+}
 
-        /* Panel de Controles */
-        .controls {
-            width: 300px;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-right: 1px solid #e0e0e0;
-            display: flex;
-            flex-direction: column;
-        }
+/* Contenedor principal con efecto glassmorphism */
+.container {
+    display: flex;
+    width: 90%;
+    max-width: 1100px;
+    height: 85vh;
+    background: rgba(255,255,255,0.82);
+    border-radius: 22px;
+    box-shadow: 0 12px 40px 0 rgba(44, 62, 80, 0.18), 0 1.5px 8px 0 rgba(44, 62, 80, 0.08);
+    overflow: hidden;
+    backdrop-filter: blur(12px) saturate(1.2);
+    border: 1.5px solid #e0e0e0;
+    transition: background 0.3s;
+}
 
-        .controls h2 {
-            margin-top: 0;
-            font-size: 1.2rem;
-            color: #007bff;
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 10px;
-        }
+/* Panel de controles con fondo más diferenciado */
+.controls {
+    width: 320px;
+    padding: 32px 24px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-right: 1.5px solid #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 2px 0 8px rgba(44, 62, 80, 0.04);
+    backdrop-filter: blur(6px);
+}
 
-        .control-group {
-            margin-bottom: 20px;
-        }
+.controls h2 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    color: #3a8dde;
+    border-bottom: 2px solid #3a8dde;
+    padding-bottom: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+}
 
-        .control-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+.control-group {
+    margin-bottom: 28px;
+}
 
-        .control-group input[type="range"] {
-            width: 100%;
-            cursor: pointer;
-        }
+.control-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 600;
+    color: #2d3a4b;
+}
 
-        .control-group span {
-            font-weight: bold;
-            color: #0056b3;
-        }
+/* Mejora visual de los sliders (barras de parámetros) */
+.control-group input[type="range"] {
+    width: 100%;
+    height: 8px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #3a8dde 0%, #74ebd5 100%);
+    outline: none;
+    transition: background 0.3s;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    box-shadow: 0 2px 8px rgba(58, 141, 222, 0.10);
+    appearance: none;
+    /* Para alinear el thumb en todos los navegadores */
+    position: relative;
+    z-index: 1;
+}
 
-        /* Panel del Chat */
-        .chat-container {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
+/* Webkit (Chrome, Safari, Edge) */
+.control-group input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    margin-top: -7px; /* Centra el thumb respecto a la pista de 8px */
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3a8dde 60%, #74ebd5 100%);
+    border: 2.5px solid #fff;
+    box-shadow: 0 2px 8px rgba(58, 141, 222, 0.18);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+.control-group input[type="range"]:hover::-webkit-slider-thumb {
+    background: linear-gradient(135deg, #74ebd5 60%, #3a8dde 100%);
+    transform: scale(1.08);
+}
 
-        #chat-window {
-            flex-grow: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-        }
+/* Firefox */
+.control-group input[type="range"]::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3a8dde 60%, #74ebd5 100%);
+    border: 2.5px solid #fff;
+    box-shadow: 0 2px 8px rgba(58, 141, 222, 0.18);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+.control-group input[type="range"]:hover::-moz-range-thumb {
+    background: linear-gradient(135deg, #74ebd5 60%, #3a8dde 100%);
+    transform: scale(1.08);
+}
 
-        .message {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 18px;
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
+/* IE/Edge */
+.control-group input[type="range"]::-ms-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3a8dde 60%, #74ebd5 100%);
+    border: 2.5px solid #fff;
+    box-shadow: 0 2px 8px rgba(58, 141, 222, 0.18);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 0; /* IE no soporta margin-top, pero lo dejamos para compatibilidad */
+}
+.control-group input[type="range"]:hover::-ms-thumb {
+    background: linear-gradient(135deg, #74ebd5 60%, #3a8dde 100%);
+    transform: scale(1.08);
+}
 
-        .user-message {
-            background-color: #007bff;
-            color: white;
-            align-self: flex-end;
-            border-bottom-right-radius: 4px;
-        }
+/* Eliminar el fondo por defecto en Firefox */
+.control-group input[type="range"]::-moz-range-track {
+    background: transparent;
+}
+.control-group input[type="range"]::-ms-fill-lower,
+.control-group input[type="range"]::-ms-fill-upper {
+    background: transparent;
+}
 
-        .bot-message {
-            background-color: #e9e9eb;
-            color: #333;
-            align-self: flex-start;
-            border-bottom-left-radius: 4px;
-        }
+/* Para que el slider se vea igual en todos los navegadores */
+.control-group input[type="range"]::-webkit-slider-runnable-track {
+    height: 8px;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #3a8dde 0%, #74ebd5 100%);
+}
+.control-group input[type="range"]::-ms-fill-lower,
+.control-group input[type="range"]::-ms-fill-upper {
+    height: 8px;
+    border-radius: 6px;
+}
 
-        .bot-message .params {
-            font-size: 0.75rem;
-            margin-top: 8px;
-            color: #888;
-            border-top: 1px dashed #ccc;
-            padding-top: 5px;
-        }
+/* Focus */
+.control-group input[type="range"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #3a8dde55;
+}
 
-        /* Área de entrada de texto */
-        .input-area {
-            display: flex;
-            padding: 20px;
-            border-top: 1px solid #e0e0e0;
-        }
+/* Valor numérico destacado */
+.control-group span {
+    font-weight: bold;
+    color: #3a8dde;
+    margin-left: 10px;
+    background: #e0eafc;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 1.05em;
+    box-shadow: 0 1px 4px rgba(58, 141, 222, 0.07);
+}
 
-        #user-input {
-            flex-grow: 1;
-            border: 1px solid #ccc;
-            border-radius: 20px;
-            padding: 10px 15px;
-            font-size: 1rem;
-        }
+/* Panel del Chat */
+.chat-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(120deg, #f0f4fa 0%, #e3e8f0 100%);
+    /* Efecto glassmorphism */
+    backdrop-filter: blur(4px) saturate(1.1);
+}
 
-        #send-btn {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            margin-left: 10px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
+#chat-window {
+    flex-grow: 1;
+    padding: 28px 32px 18px 32px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+    scrollbar-width: thin;
+    scrollbar-color: #b3c6e0 #f0f2f5;
+}
 
-        #send-btn:hover {
-            background-color: #0056b3;
-        }
+#chat-window::-webkit-scrollbar {
+    width: 8px;
+}
+#chat-window::-webkit-scrollbar-thumb {
+    background: #b3c6e0;
+    border-radius: 8px;
+}
+#chat-window::-webkit-scrollbar-track {
+    background: #f0f2f5;
+}
+
+/* Mensajes */
+.message {
+    max-width: 80%;
+    padding: 14px 20px;
+    border-radius: 22px;
+    margin-bottom: 14px;
+    line-height: 1.5;
+    font-size: 1.08rem;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+    position: relative;
+    opacity: 0;
+    animation: fadeInMsg 0.5s forwards;
+}
+
+@keyframes fadeInMsg {
+    to { opacity: 1; }
+}
+
+.user-message {
+    background: linear-gradient(135deg, #3a8dde 60%, #74ebd5 100%);
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 6px;
+    border-top-right-radius: 28px;
+    border-top-left-radius: 28px;
+    border-bottom-left-radius: 22px;
+    box-shadow: 0 2px 8px rgba(58, 141, 222, 0.10);
+}
+
+.bot-message {
+    background: linear-gradient(135deg, #f8fafc 60%, #e0eafc 100%);
+    color: #222;
+    align-self: flex-start;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 28px;
+    border-top-left-radius: 28px;
+    border-bottom-right-radius: 22px;
+    border: 1px solid #e0e0e0;
+}
+
+.bot-message .params {
+    font-size: 0.78rem;
+    margin-top: 10px;
+    color: #6c8bbd;
+    border-top: 1px dashed #b3c6e0;
+    padding-top: 6px;
+    font-style: italic;
+}
+
+/* Área de entrada de texto */
+.input-area {
+    display: flex;
+    padding: 22px 32px;
+    border-top: 1.5px solid #e0e0e0;
+    background: rgba(255,255,255,0.85);
+}
+
+#user-input {
+    flex-grow: 1;
+    border: 1.5px solid #b3c6e0;
+    border-radius: 22px;
+    padding: 12px 18px;
+    font-size: 1.08rem;
+    outline: none;
+    transition: border-color 0.2s;
+    background: #f8fafc;
+    color: #222;
+}
+
+#user-input:focus {
+    border-color: #3a8dde;
+    background: #fff;
+}
+
+#send-btn {
+    background: linear-gradient(135deg, #3a8dde 60%, #74ebd5 100%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    margin-left: 14px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(58, 141, 222, 0.13);
+    transition: background 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#send-btn:hover {
+    background: linear-gradient(135deg, #74ebd5 60%, #3a8dde 100%);
+    transform: scale(1.08);
+}
+
+/* Footer */
+.footer {
+    width: 100vw;
+    text-align: center;
+    padding: 18px 0 10px 0;
+    background: rgba(255,255,255,0.85);
+    font-size: 1rem;
+    color: #3a8dde;
+    letter-spacing: 0.02em;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    box-shadow: 0 -2px 12px rgba(44,62,80,0.06);
+}
+
+.footer .linkedin-link {
+    color: #0077b5;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+.footer .linkedin-link:hover {
+    color: #005983;
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+        height: 98vh;
+        width: 98vw;
+        min-width: 0;
+    }
+    .controls {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1.5px solid #e0e0e0;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 18px 10px;
+        justify-content: space-between;
+    }
+    .control-group {
+        margin-bottom: 0;
+        margin-right: 18px;
+        min-width: 120px;
+    }
+    .chat-container {
+        min-height: 0;
+    }
+    .input-area {
+        padding: 12px 10px;
+    }
+    #chat-window {
+        padding: 14px 10px 8px 10px;
+    }
+}
