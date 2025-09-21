@@ -6,4 +6,6 @@ El diseño de la interfaz es moderno, atractivo y adaptable, con un enfoque visu
 
 Ideal para quienes desean explorar el potencial de los modelos generativos y experimentar con la configuración de sus respuestas en tiempo real.
 
+Puedes probar la aplicación aquí: [https://mi-chatbot-app.onrender.com](https://mi-chatbot-app.onrender.com/)
+
 ![Ejemplo de interfaz del chatbot](frontend/photo-example-chatbot.png)
