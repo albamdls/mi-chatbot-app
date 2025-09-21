@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot con Gemini - Demo de Parámetros</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="controls">
+            <h2>Parámetros del Modelo</h2>
+
+            <div class="control-group">
+                <label for="temperature">Temperature: <span id="temperature-value">0.7</span></label>
+                <input type="range" id="temperature" min="0" max="1" step="0.1" value="0.7">
+            </div>
+
+            <div class="control-group">
+                <label for="top-k">Top-K: <span id="top-k-value">40</span></label>
+                <input type="range" id="top-k" min="1" max="50" step="1" value="40">
+            </div>
+
+            <div class="control-group">
+                <label for="top-p">Top-P: <span id="top-p-value">0.9</span></label>
+                <input type="range" id="top-p" min="0" max="1" step="0.05" value="0.9">
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <div id="chat-window">
+                <div class="message bot-message">Hola 👋! Soy un asistente impulsado por Gemini. Ajusta los parámetros
+                    de la izquierda para ver cómo cambia mi creatividad y coherencia. ¡Pruébame!</div>
+            </div>
+            <div class="input-area">
+                <input type="text" id="user-input" placeholder="Escribe tu mensaje aquí...">
+                <button id="send-btn">➤</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

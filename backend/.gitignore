@@ -1,0 +1,17 @@
+# Fichero de entorno con secretos y claves de API
+# ¡LA LÍNEA MÁS IMPORTANTE PARA LA SEGURIDAD!
+.env
+
+# Carpeta del entorno virtual de Python
+venv/
+.venv/
+
+# Archivos de caché y compilados de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Carpetas de configuración de editores de código (opcional pero recomendado)
+.vscode/
+.idea/
