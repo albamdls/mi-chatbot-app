@@ -10,7 +10,8 @@
         const toppSlider = document.getElementById('top-p');
         const toppValue = document.getElementById('top-p-value');
 
-        const API_URL = 'http://127.0.0.1:8000/chat';
+        // const API_URL = 'http://127.0.0.1:8000/chat';
+        const API_URL = 'https://mi-chatbot-backend-42bp.onrender.com/chat';
 
         // Actualizar los valores numéricos al mover los sliders
         tempSlider.addEventListener('input', () => tempValue.textContent = tempSlider.value);

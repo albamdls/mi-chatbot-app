@@ -19,7 +19,11 @@ app = FastAPI()
 # Esto es crucial para permitir que tu frontend (página web) se comunique con este backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Permite todas las origenes, puedes restringirlo a tu dominio
+    allow_origins=[
+        "https://mi-chatbot-app.onrender.com", # Tu frontend en Render
+        "http://localhost", # Aún puedes necesitarlo para desarrollo local
+        "http://127.0.0.1",
+    ],  # Permite todas las origenes, puedes restringirlo a tu dominio
     allow_credentials=True,
     allow_methods=["*"],  # Permite todos los métodos (GET, POST, etc.)
     allow_headers=["*"],  # Permite todas las cabeceras
