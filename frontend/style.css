@@ -23,12 +23,26 @@ body {
     background-blend-mode: lighten;
 }
 
+/* Cambia el body a layout en columna para que el footer quede siempre abajo */
+body, html {
+    height: 100%;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
 /* Contenedor principal con efecto glassmorphism */
 .container {
+    flex: 1 0 auto;
     display: flex;
+    flex-direction: row;
     width: 90%;
     max-width: 1100px;
-    height: 85vh;
+    height: auto;
+    margin: 32px auto 0 auto;
     background: rgba(255,255,255,0.82);
     border-radius: 22px;
     box-shadow: 0 12px 40px 0 rgba(44, 62, 80, 0.18), 0 1.5px 8px 0 rgba(44, 62, 80, 0.08);
@@ -184,6 +198,7 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    min-height: 0;
     background: linear-gradient(120deg, #f0f4fa 0%, #e3e8f0 100%);
     /* Efecto glassmorphism */
     backdrop-filter: blur(4px) saturate(1.1);
@@ -316,11 +331,12 @@ body {
     font-size: 1rem;
     color: #3a8dde;
     letter-spacing: 0.02em;
-    position: fixed;
-    left: 0;
-    bottom: 0;
+    position: static;
+    left: unset;
+    bottom: unset;
     z-index: 10;
     box-shadow: 0 -2px 12px rgba(44,62,80,0.06);
+    margin-top: 24px;
 }
 
 .footer .linkedin-link {
@@ -338,9 +354,12 @@ body {
 @media (max-width: 900px) {
     .container {
         flex-direction: column;
-        height: 98vh;
-        width: 98vw;
+        width: 100vw;
+        height: auto;
         min-width: 0;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
     }
     .controls {
         width: 100%;
@@ -350,6 +369,8 @@ body {
         flex-wrap: wrap;
         padding: 18px 10px;
         justify-content: space-between;
+        border-radius: 0;
+        box-shadow: none;
     }
     .control-group {
         margin-bottom: 0;
@@ -358,11 +379,17 @@ body {
     }
     .chat-container {
         min-height: 0;
+        border-radius: 0;
     }
     .input-area {
         padding: 12px 10px;
     }
     #chat-window {
         padding: 14px 10px 8px 10px;
+    }
+    .footer {
+        margin-top: 0;
+        padding: 14px 0 8px 0;
+        box-shadow: none;
     }
 }
